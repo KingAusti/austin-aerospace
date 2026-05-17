@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# ─────────────────────────────────────────────────
+#  Deep Forest Gruvbox — JankyBorders Config
+#  (borders from FelixKratz/formulae)
+# ─────────────────────────────────────────────────
+#
+#  Color format: 0xAARRGGBB
+#    active_color  = Gruvbox green with 85% alpha glow
+#    inactive_color = BG2 at ~12% alpha (barely visible)
+
+options=(
+  style=round
+  width=5.0
+  hidpi=on
+  active_color=0xd9b8bb26
+  inactive_color=0x20504945
+  background_color=0x00000000
+  blacklist="Finder,Alfred,Spotlight,1Password"
+)
+
+borders "${options[@]}"

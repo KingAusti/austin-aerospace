@@ -1,0 +1,39 @@
+# ─────────────────────────────────────────────────
+#  Deep Forest Gruvbox — Ghostty Terminal Config
+# ─────────────────────────────────────────────────
+
+# Built-in Gruvbox Dark Hard theme.
+# If this name fails, try: "Gruvbox Dark Hard" or "gruvbox-dark-hard"
+theme = Gruvbox Dark Hard
+
+# Typography
+font-family = VictorMono NFM
+font-size = 14
+font-thicken = true
+
+# Window chrome
+macos-titlebar-style = hidden
+window-padding-x = 10
+window-padding-y = 10,0
+
+# Atmosphere
+background-opacity = 0.96
+background-blur-radius = 15
+
+# Cursor
+cursor-style = bar
+cursor-style-blink = true
+
+# macOS Option key as Alt (left side only, keeps right for macOS shortcuts)
+macos-option-as-alt = left
+
+# Shell integration
+shell-integration = detect
+shell-integration-features = cursor,sudo,title
+
+# Misc quality-of-life
+copy-on-select = clipboard
+focus-follows-mouse = false
+mouse-hide-while-typing = true
+confirm-close-surface = false
+quit-after-last-window-closed = false

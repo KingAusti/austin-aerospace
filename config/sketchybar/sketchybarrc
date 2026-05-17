@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+# ─────────────────────────────────────────────────
+#  Deep Forest Gruvbox — SketchyBar Main Config
+#  Josean Martinez floating-pill style
+# ─────────────────────────────────────────────────
+
+CONFIG_DIR="$HOME/.config/sketchybar"
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+ITEM_DIR="$CONFIG_DIR/items"
+FONT="SF Pro"
+NERD_FONT="VictorMono Nerd Font Mono"
+APP_FONT="sketchybar-app-font"
+
+source "$CONFIG_DIR/colors.sh"
+
+# ── Bar ──────────────────────────────────────────
+sketchybar --bar \
+  height=36            \
+  position=top         \
+  sticky=on            \
+  padding_left=8       \
+  padding_right=8      \
+  color=$BAR_COLOR     \
+  border_color=$TRANSPARENT \
+  corner_radius=10     \
+  y_offset=5           \
+  margin=10            \
+  blur_radius=30       \
+  notch_width=0        \
+  topmost=window
+
+# ── Global Defaults ───────────────────────────────
+sketchybar --default \
+  updates=on                                    \
+  label.font="$NERD_FONT:SemiBold:14.0"        \
+  icon.font="$NERD_FONT:Regular:18.0"           \
+  label.color=$FG_COLOR                        \
+  icon.color=$FG_COLOR                         \
+  label.padding_left=5                         \
+  label.padding_right=5                        \
+  icon.padding_left=6                          \
+  icon.padding_right=4                         \
+  background.height=30                         \
+  background.corner_radius=8                   \
+  background.color=$ITEM_BG_COLOR              \
+  padding_left=4                               \
+  padding_right=4
+
+# ── Left — Workspaces → Front App ────────────────
+source "$ITEM_DIR/spaces.sh"
+source "$ITEM_DIR/front_app.sh"
+
+# ── Right — System Info ───────────────────────────
+source "$ITEM_DIR/cpu.sh"
+source "$ITEM_DIR/battery.sh"
+source "$ITEM_DIR/volume.sh"
+source "$ITEM_DIR/calendar.sh"
+
+sketchybar --update
+
+# Seed front_app with whatever is currently focused (front_app_switched won't
+# fire for an app that was already in the foreground when the bar reloaded)
+FRONT_APP=$(osascript -e 'tell application "System Events" to displayed name of first application process whose frontmost is true' 2>/dev/null || echo "Finder")
+sketchybar --set front_app label="$FRONT_APP"
+
+# Highlight the workspace that is already focused when the bar first loads
+FOCUSED=$(aerospace list-workspaces --focused 2>/dev/null || echo "1")
+sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE="$FOCUSED"
