@@ -6,6 +6,7 @@
 # ─────────────────────────────────────────────────
 
 function icon_map() {
+  # shellcheck disable=SC2034  # icon_result is read by callers after sourcing this file
   case "$1" in
     # ── Terminals ──────────────────────────────────
     "Ghostty"|"iTerm2"|"Terminal"|"Alacritty"|"kitty"|"WezTerm")

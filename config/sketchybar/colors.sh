@@ -3,6 +3,7 @@
 #  Deep Forest Gruvbox — SketchyBar Color Palette
 #  All values in 0xAARRGGBB format
 # ─────────────────────────────────────────────────
+# shellcheck disable=SC2034  # variables are used by scripts that source this file
 
 # ── Bar ──────────────────────────────────────────
 BAR_COLOR=0xe61d2021        # BG Hard @ 90% opacity
