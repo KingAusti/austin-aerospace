@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    name: Lint & validate
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install shellcheck
+        run: sudo apt-get install -y shellcheck
+
+      - name: ShellCheck — .sh files
+        run: |
+          find . -name '*.sh' -not -path './.git/*' \
+            | xargs shellcheck -S warning
+
+      - name: ShellCheck — bare scripts
+        run: |
+          shellcheck -S warning \
+            config/sketchybar/sketchybarrc \
+            config/borders/bordersrc
+
+      - name: Bash syntax check
+        run: |
+          find . -name '*.sh' -not -path './.git/*' \
+            | xargs -I{} bash -n {}
+          bash -n config/sketchybar/sketchybarrc
+          bash -n config/borders/bordersrc
+
+      - name: Validate aerospace.toml
+        run: |
+          python3 -c "
+          import tomllib
+          with open('config/aerospace/aerospace.toml', 'rb') as f:
+              tomllib.load(f)
+          print('aerospace.toml: valid')
+          "
