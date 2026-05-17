@@ -3,6 +3,7 @@
 #  Deep Forest Gruvbox — SketchyBar Main Config
 #  Josean Martinez floating-pill style
 # ─────────────────────────────────────────────────
+# shellcheck disable=SC2034  # PLUGIN_DIR, FONT, APP_FONT are exported for sourcing scripts
 
 CONFIG_DIR="$HOME/.config/sketchybar"
 PLUGIN_DIR="$CONFIG_DIR/plugins"
