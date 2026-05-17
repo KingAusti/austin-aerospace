@@ -29,6 +29,7 @@ for i in $(seq 1 9); do
 done
 
 # Separator bracket for visual grouping
+# shellcheck disable=SC2046
 sketchybar --add bracket spaces_bracket \
   $(for i in $(seq 1 9); do echo "space.$i"; done) \
   --set spaces_bracket \
